@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Implementation</title>
+    <style>
+        .dynamic-button {
+            cursor: pointer;
+        }
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <h2>1. Смена картинки</h2>
+    <input type="text" id="imageUrlInput" placeholder="Введите URL картинки">
+    <button onclick="changeImage()">Показать картинку</button>
+    <img id="dynamicImage" src="https://www.zastavki.com/pictures/originals/2014/Nature___Clouds_Clouds_in_the_mountains_089495_.jpg" 
+         alt="Начальная картинка" 
+         style="max-width: 300px; display: block; margin-top: 10px;">
+
+    <h2>2. Изменение текста кнопки при наведении</h2>
+    <button id="hoverButton" class="dynamic-button" 
+        onmouseover="changeButtonText(this, 'Курсор наведен!')" 
+        onmouseout="changeButtonText(this, 'Наведите на меня')">Наведите на меня</button>
+
+    <h2>3. Смена цветов текста и фона</h2>
+    <input type="text" id="textColorInput" placeholder="Цвет текста">
+    <input type="text" id="bgColorInput" placeholder="Цвет фона">
+    <button onclick="changeParagraphColors()">Применить цвета</button>
+    <p id="colorParagraph">Цвета текста и фона этого абзаца будут изменены</p>
+
+    <h2>4. Изменение рамки таблицы</h2>
+    <input type="text" id="borderWidthInput" placeholder="Толщина рамки (px)">
+    <input type="text" id="borderColorInput" placeholder="Цвет рамки">
+    <button onclick="updateTableBorder()">Обновить рамку</button>
+    <table border="1" id="dynamicTable" style="margin-top: 10px;">
+        <tr>
+            <td>Ячейка 1</td>
+            <td>Ячейка 2</td>
+        </tr>
+    </table>
+
+    <h2>5. Сумма чисел</h2>
+    <input type="number" id="number1" placeholder="Число 1">
+    <input type="number" id="number2" placeholder="Число 2">
+    <button onclick="calculateSum()">Посчитать</button>
+    <span id="result">Результат</span>
+
+    <script>
+        function changeImage() {
+            const imageUrl = document.getElementById('imageUrlInput').value;
+            const imageElement = document.getElementById('dynamicImage');
+            if (imageUrl) {
+                imageElement.src = imageUrl;
+                imageElement.style.display = 'block';
+            } else {
+                alert('Введите URL картинки!');
+            }
+        }
+
+        function changeButtonText(button, text) {
+            button.textContent = text;
+        }
+
+        function changeParagraphColors() {
+            const textColor = document.getElementById('textColorInput').value;
+            const bgColor = document.getElementById('bgColorInput').value;
+            const paragraph = document.getElementById('colorParagraph');
+
+            if (textColor) paragraph.style.color = textColor;
+            if (bgColor) paragraph.style.backgroundColor = bgColor;
+        }
+
+        function updateTableBorder() {
+            const borderWidth = document.getElementById('borderWidthInput').value;
+            const borderColor = document.getElementById('borderColorInput').value;
+            const table = document.getElementById('dynamicTable');
+
+            if (borderWidth) table.style.borderWidth = borderWidth + 'px';
+            if (borderColor) table.style.borderColor = borderColor;
+        }
+
+        function calculateSum() {
+            const num1 = parseFloat(document.getElementById('number1').value) || 0;
+            const num2 = parseFloat(document.getElementById('number2').value) || 0;
+            document.getElementById('result').textContent = num1 + num2;
+        }
+    </script>
+</body>
+</html>
